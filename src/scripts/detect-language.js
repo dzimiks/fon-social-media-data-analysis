@@ -1,4 +1,6 @@
 const db = require('./data/db.json');
+const users = require('./data/users.json');
+
 const { writeFile } = require('./utils');
 const franc = require('franc');
 const { balkanLanguages, balkanKeywords } = require('./consts');
@@ -65,4 +67,14 @@ db.forEach((post) => {
   };
 });
 
-writeFile('data/user.json', JSON.stringify(user, null, 2));
+writeFile('data/users.json', JSON.stringify(user, null, 2));
+
+const balkanProfiles = [];
+
+Object.entries(users).forEach(([key, value]) => {
+  if (value.isBalkanLanguage) {
+    balkanProfiles.push({ ...value });
+  }
+});
+
+writeFile('data/balkanProfiles.json', JSON.stringify(balkanProfiles, null, 2));
