@@ -26,3 +26,12 @@ Run command: `yarn add @fortawesome/fontawesome-svg-core @fortawesome/free-solid
 ## 3. Create Basic Scraper Script
 
 Inside the directory **scripts** create a file `scraper.js`. You can run it with a command: `node scraper.js`.
+
+## 4. Interesting Functions
+
+- [getUserProfileInfo()](https://github.com/drawrowfly/tiktok-scraper/blob/master/examples/getSingleUserMeta.ts) - Get user profile information
+- [trend()](https://github.com/drawrowfly/tiktok-scraper/blob/master/examples/getTrendingFeed.ts) - Scrape posts from trends section
+
+## 5. Language Detection & Data Cleaning
+
+TODO
