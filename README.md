@@ -5,12 +5,15 @@ Presentation link - https://docs.google.com/presentation/d/1udlogZIFjm2uxZfUTE2s
 
 ## 1. Installation & Project Setup
 
+You can download the project using git command: `git clone https://github.com/dzimiks/fon-social-media-data-analysis.git`. Then run `yarn install` inside the root of the project.
+
 - [Node.js LTS](https://nodejs.org/en/download) - Download the Node.js source code or a pre-built installer for your platform, and start developing today.
 - [npx](https://www.npmjs.com/package/npx) - `npm install -g npx`
 - [yarn](https://yarnpkg.com/getting-started/install) - `npm install -g yarn`
 - Create project: `npx create-react-app fon-social-media-data-analysis`
 - Go to project directory: `cd fon-social-media-data-analysis`
 - Run project: `yarn start`
+- If directory `node_modules` is missing, try to run command `yarn install`
 
 ## 2. Install Dependencies
 
