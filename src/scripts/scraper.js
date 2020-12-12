@@ -1,5 +1,5 @@
 const { writeFile } = require('./utils');
-const { getUserProfileInfo } = require('tiktok-scraper');
+const { getUserProfileInfo, trend } = require('tiktok-scraper');
 
 const getUserData = async (username) => {
   const userMeta = await getUserProfileInfo(username, {});
@@ -15,5 +15,15 @@ const getUserData = async (username) => {
 //   writeFile('data/getUserData.json', JSON.stringify(userMeta, null, 2));
 // }
 
-getUserData('neuspehjokeru')
-  .then(() => console.log('Fetched user data!'));
+const getTrendingPosts = async () => {
+  const posts = await trend('', {
+    number: 200,
+  });
+  writeFile('data/db.json', JSON.stringify(posts.collector, null, 2));
+};
+
+// getUserData('neuspehjokeru')
+//   .then(() => console.log('Fetched user data!'));
+
+getTrendingPosts()
+  .then(() => console.log('Fetched trending posts!'));
