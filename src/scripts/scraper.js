@@ -12,6 +12,7 @@ const getUserData = async (username) => {
 // async function getUserData(username) {
 //   const userMeta = await getUserProfileInfo(username, {});
 //   console.log(userMeta);
+//   writeFile('data/getUserData.json', JSON.stringify(userMeta, null, 2));
 // }
 
 getUserData('neuspehjokeru')
