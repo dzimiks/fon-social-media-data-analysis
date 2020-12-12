@@ -1,6 +1,7 @@
 const db = require('./data/db.json');
 const { writeFile } = require('./utils');
 const franc = require('franc');
+const { balkanLanguages, balkanKeywords } = require('./consts');
 
 const user = {};
 
@@ -30,9 +31,23 @@ db.forEach((post) => {
     languages[id] = probability;
   });
 
+  // Has language object some of the balkan languages?
+  const isBalkanLanguage = Object.keys(languages)
+    .some((lang) => Object.keys(balkanLanguages)
+      .some((langName) => lang === langName));
+
+  // Is keyword inside the text or signature?
+  const hasBalkanLanguage = balkanKeywords.some((keyword) => {
+    const hasTextKeyword = text.includes(keyword);
+    const hasSignatureKeyword = authorMeta.signature.includes(keyword);
+    return hasTextKeyword || hasSignatureKeyword;
+  });
+
   console.log('TEXT:', text);
   console.log('SIGNATURE:', authorMeta.signature);
   console.log('LANGUAGES:', languages);
+  console.log('IS BALKAN LANG:', isBalkanLanguage);
+  console.log('HAS BALKAN LANG:', hasBalkanLanguage);
 
   // Template string
   user[`@${authorMeta.name}`] = {
@@ -46,7 +61,8 @@ db.forEach((post) => {
     playCount,
     commentCount,
     hashtags,
+    isBalkanLanguage: isBalkanLanguage || hasBalkanLanguage,
   };
 });
 
-// writeFile('data/user.json', JSON.stringify(user, null, 2));
+writeFile('data/user.json', JSON.stringify(user, null, 2));
