@@ -18,12 +18,20 @@ function App() {
 
         <div className="row">
           {balkanUsers.map((post) => (
-            <div className="col-md-4 mb-3">
-              <div className="card">
+            <div className="col-md-4 mb-3" key={post.id}>
+              <div className="card card-shadow">
                 <div className="card-body">
-                  <h5 className="card-title">
-                    {post.authorMeta.name}
-                  </h5>
+                  <div className="d-flex mb-3">
+                    <img
+                      src={post.authorMeta.avatar}
+                      className="img-fluid rounded-circle card-image"
+                      alt={post.text}
+                    />
+
+                    <h5 className="card-title">
+                      {post.authorMeta.name}
+                    </h5>
+                  </div>
 
                   <h6 className="card-subtitle mb-2 text-muted">
                     {post.authorMeta.signature}

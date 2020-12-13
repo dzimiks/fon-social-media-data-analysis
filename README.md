@@ -40,4 +40,5 @@ Inside the directory **scripts** create a file `scraper.js`. You can run it with
 
 ## 6. Data Preview & UI
 
-Get [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction).
+- Get [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction).
+- Add [card shadow](https://codepen.io/sdthornton/pen/wBZdXq).
