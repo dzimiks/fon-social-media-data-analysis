@@ -24,3 +24,11 @@
   color: #777;
   text-decoration: none;
 }
+
+.card-meta {
+  justify-content: center;
+}
+
+.card-meta-icon {
+  margin: 0 7px;
+}
