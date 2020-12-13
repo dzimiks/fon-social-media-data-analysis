@@ -11,6 +11,8 @@ import {
   faPlay,
   faComment,
 } from '@fortawesome/free-solid-svg-icons';
+import { Bar } from 'react-chartjs-2';
+import { SORT_INDICATOR } from './scripts/consts';
 
 function App() {
   const [sortValue, setSortValue] = useState('playCount');
@@ -34,6 +36,29 @@ function App() {
     return 0;
   };
 
+  const usersChartData = balkanUsers
+    .sort((a, b) => customSortCompare(a, b, sortValue))
+    .slice(0, limit)
+    .map((post) => ({
+      data: post[sortValue],
+      username: post.authorMeta.name,
+    }));
+
+  const chartData = {
+    labels: usersChartData.map((post) => post.username),
+    datasets: [
+      {
+        label: `Top ${limit} by ${SORT_INDICATOR[sortValue]}`,
+        data: usersChartData.map((post) => post.data),
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+      }
+    ]
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -42,6 +67,19 @@ function App() {
             <h1 className="text-center my-5">
               TikTok Scraper
             </h1>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12 mb-3">
+            <Bar
+              data={chartData}
+              width={100}
+              height={400}
+              options={{
+                maintainAspectRatio: false
+              }}
+            />
           </div>
         </div>
 

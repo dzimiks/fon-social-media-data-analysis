@@ -18,3 +18,10 @@ module.exports.balkanKeywords = [
   'janko',
   'OZBILJNO',
 ];
+
+module.exports.SORT_INDICATOR = {
+  diggCount: 'Likes',
+  shareCount: 'Shares',
+  playCount: 'Views',
+  commentCount: 'Comments',
+};

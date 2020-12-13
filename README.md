@@ -45,3 +45,6 @@ Inside the directory **scripts** create a file `scraper.js`. You can run it with
 - Get [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction).
 - Add [card shadow](https://codepen.io/sdthornton/pen/wBZdXq).
 - Format [numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString).
+- Sort by filter
+- Limit by filter
+- [Chart JS](https://github.com/reactchartjs/react-chartjs-2) for visualization
