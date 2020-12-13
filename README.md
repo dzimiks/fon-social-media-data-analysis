@@ -40,4 +40,4 @@ Inside the directory **scripts** create a file `scraper.js`. You can run it with
 
 ## 6. Data Preview & UI
 
-TODO
+Get [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction).
