@@ -13,6 +13,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
+  const handleSort = () => {
+
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -21,6 +25,25 @@ function App() {
             <h1 className="text-center my-5">
               TikTok Scraper
             </h1>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12 mb-3">
+            <h3>Filters</h3>
+
+            <label htmlFor="sortFilter">Sort By:</label>
+
+            <select
+              className="form-control w-25"
+              id="sortFilter"
+              onChange={handleSort}
+            >
+              <option value="playCount">Views</option>
+              <option value="diggCount">Likes</option>
+              <option value="commentCount">Comments</option>
+              <option value="shareCount">Shares</option>
+            </select>
           </div>
         </div>
 
