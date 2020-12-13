@@ -5,7 +5,7 @@ const { writeFile } = require('./utils');
 const franc = require('franc');
 const { balkanLanguages, balkanKeywords } = require('./consts');
 
-const user = {};
+const allUsers = [];
 
 db.forEach((post) => {
   const {
@@ -51,8 +51,7 @@ db.forEach((post) => {
   console.log('IS BALKAN LANG:', isBalkanLanguage);
   console.log('HAS BALKAN LANG:', hasBalkanLanguage);
 
-  // Template string
-  user[`@${authorMeta.name}`] = {
+  allUsers.push({
     id,
     text,
     authorMeta,
@@ -64,17 +63,17 @@ db.forEach((post) => {
     commentCount,
     hashtags,
     isBalkanLanguage: isBalkanLanguage || hasBalkanLanguage,
-  };
+  });
 });
 
-writeFile('data/users.json', JSON.stringify(user, null, 2));
+writeFile('data/users.json', JSON.stringify(allUsers, null, 2));
 
-const balkanProfiles = [];
+const balkanUsers = [];
 
-Object.entries(users).forEach(([key, value]) => {
-  if (value.isBalkanLanguage) {
-    balkanProfiles.push({ ...value });
+users.forEach((post) => {
+  if (post.isBalkanLanguage) {
+    balkanUsers.push({ ...post });
   }
 });
 
-writeFile('data/balkanProfiles.json', JSON.stringify(balkanProfiles, null, 2));
+writeFile('data/balkanUsers.json', JSON.stringify(balkanUsers, null, 2));
