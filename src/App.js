@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-// import allUsers from './scripts/data/users.json';
+import allUsers from './scripts/data/users.json';
 import balkanUsers from './scripts/data/balkanUsers.json';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1 className="text-center">
+            <h1 className="text-center my-5">
               TikTok Scraper
             </h1>
           </div>
@@ -18,7 +18,7 @@ function App() {
 
         <div className="row">
           {balkanUsers.map((post) => (
-            <div className="col-md-4 mb-3" key={post.id}>
+            <div className="col-md-6 mb-3" key={post.id}>
               <div className="card card-shadow">
                 <div className="card-body">
                   <div className="d-flex align-items-center mb-3">
@@ -28,9 +28,11 @@ function App() {
                       alt={post.text}
                     />
 
-                    <h5 className="card-title">
-                      {post.authorMeta.name}
-                    </h5>
+                    <a href={post.webVideoUrl} className="card-title-link">
+                      <h5 className="card-title">
+                        {post.authorMeta.name}
+                      </h5>
+                    </a>
                   </div>
 
                   <h6 className="card-subtitle mb-2 text-muted">
@@ -40,6 +42,13 @@ function App() {
                   <p className="card-text">
                     {post.text}
                   </p>
+
+                  <video
+                    width="100%"
+                    height="600px"
+                    src={post.videoUrl}
+                    controls
+                  />
                 </div>
               </div>
             </div>

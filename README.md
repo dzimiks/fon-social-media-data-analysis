@@ -3,6 +3,8 @@
 Project link - https://github.com/dzimiks/fon-social-media-data-analysis.  
 Presentation link - https://docs.google.com/presentation/d/1udlogZIFjm2uxZfUTE2s1a0XM9NzzJ0RzUnpMPgmOhI/edit?usp=sharing.
 
+**NOTE:** These video links are accessible for a couple of hours only!!!
+
 ## 1. Installation & Project Setup
 
 You can download the project using git command: `git clone https://github.com/dzimiks/fon-social-media-data-analysis.git` or download zip file. Then run `yarn install` inside the root of the project.

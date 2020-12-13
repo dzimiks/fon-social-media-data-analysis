@@ -14,3 +14,13 @@
   width: 50px;
   margin-right: 10px;
 }
+
+.card-title-link {
+  color: #222;
+  text-decoration: none;
+}
+
+.card-title-link:hover {
+  color: #777;
+  text-decoration: none;
+}
