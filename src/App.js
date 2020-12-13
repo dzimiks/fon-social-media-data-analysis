@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import allUsers from './scripts/data/users.json';
@@ -13,8 +13,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-  const handleSort = () => {
+  const [sortValue, setSortValue] = useState('playCount');
 
+  const handleSort = (event) => {
+    setSortValue(event.target.value);
+  };
+
+  const customSortCompare = (a, b, value) => {
+    if (a[value] > b[value]) {
+      return -1;
+    } else if (a[value] < b[value]) {
+      return 1;
+    }
+
+    return 0;
   };
 
   return (
@@ -48,74 +60,76 @@ function App() {
         </div>
 
         <div className="row">
-          {balkanUsers.map((post) => (
-            <div className="col-md-6 mb-3" key={post.id}>
-              <div className="card card-shadow">
-                <div className="card-body">
-                  <div className="d-flex align-items-center mb-3">
-                    <img
-                      src={post.authorMeta.avatar}
-                      className="img-fluid rounded-circle card-image"
-                      alt={post.text}
-                    />
+          {balkanUsers
+            .sort((a, b) => customSortCompare(a, b, sortValue))
+            .map((post) => (
+              <div className="col-md-6 mb-3" key={post.id}>
+                <div className="card card-shadow">
+                  <div className="card-body">
+                    <div className="d-flex align-items-center mb-3">
+                      <img
+                        src={post.authorMeta.avatar}
+                        className="img-fluid rounded-circle card-image"
+                        alt={post.text}
+                      />
 
-                    <a href={post.webVideoUrl} className="card-title-link">
-                      <h5 className="card-title">
-                        {post.authorMeta.name}
-                      </h5>
-                    </a>
-                  </div>
+                      <a href={post.webVideoUrl} className="card-title-link">
+                        <h5 className="card-title">
+                          {post.authorMeta.name}
+                        </h5>
+                      </a>
+                    </div>
 
-                  <h6 className="card-subtitle mb-2 text-muted">
-                    {post.authorMeta.signature}
-                  </h6>
+                    <h6 className="card-subtitle mb-2 text-muted">
+                      {post.authorMeta.signature}
+                    </h6>
 
-                  <p className="card-text">
-                    {post.text}
-                  </p>
+                    <p className="card-text">
+                      {post.text}
+                    </p>
 
-                  <div className="d-flex card-meta mb-3">
+                    <div className="d-flex card-meta mb-3">
                     <span>
                       <FontAwesomeIcon icon={faPlay} className="card-meta-icon" />
                       {post.playCount.toLocaleString()}
                     </span>
 
-                    <span>
+                      <span>
                       <FontAwesomeIcon icon={faHeart} className="card-meta-icon" />
-                      {post.diggCount.toLocaleString()}
+                        {post.diggCount.toLocaleString()}
                     </span>
 
-                    <span>
+                      <span>
                       <FontAwesomeIcon icon={faComment} className="card-meta-icon" />
-                      {post.commentCount.toLocaleString()}
+                        {post.commentCount.toLocaleString()}
                     </span>
 
-                    <span>
+                      <span>
                       <FontAwesomeIcon icon={faShare} className="card-meta-icon" />
-                      {post.shareCount.toLocaleString()}
+                        {post.shareCount.toLocaleString()}
                     </span>
+                    </div>
+
+                    <video
+                      width="100%"
+                      height="600px"
+                      src={post.videoUrl}
+                      controls
+                    />
                   </div>
 
-                  <video
-                    width="100%"
-                    height="600px"
-                    src={post.videoUrl}
-                    controls
-                  />
-                </div>
-
-                <div className="card-footer text-muted">
-                  {post.hashtags.length ? post.hashtags.map((hashtag) => (
-                    <span className="badge badge-primary mr-1">
+                  <div className="card-footer text-muted">
+                    {post.hashtags.length ? post.hashtags.map((hashtag) => (
+                      <span className="badge badge-primary mr-1">
                       #{hashtag.name}
                     </span>
-                  )) : (
-                    <p className="m-0">No hashtags</p>
-                  )}
+                    )) : (
+                      <p className="m-0">No hashtags</p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
