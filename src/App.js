@@ -11,7 +11,7 @@ import {
   faPlay,
   faComment,
 } from '@fortawesome/free-solid-svg-icons';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import { SORT_INDICATOR } from './scripts/consts';
 
 function App() {
@@ -59,6 +59,26 @@ function App() {
     ]
   };
 
+  const allHashtags = balkanUsers
+    .map((post) => post.hashtags.map((hashtag) => hashtag.name));
+
+  // console.log(JSON.stringify(allHashtags, null, 2));
+
+  const hashtagsArray = [];
+
+  allHashtags.forEach((hashtag) => {
+    hashtagsArray.push(...hashtag);
+  });
+
+  const hashtagsSet = [...new Set(hashtagsArray)];
+
+  const hashtagsData = {
+    labels: hashtagsSet.slice(0, limit),
+    datasets: [{
+      data: [300, 50, 100],
+    }]
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -80,6 +100,13 @@ function App() {
                 maintainAspectRatio: false
               }}
             />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12 mb-3">
+            <h3 className="text-center">Most Used Hashtags</h3>
+            <Pie data={hashtagsData} />
           </div>
         </div>
 
