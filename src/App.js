@@ -59,23 +59,51 @@ function App() {
     ]
   };
 
-  const allHashtags = balkanUsers
-    .map((post) => post.hashtags.map((hashtag) => hashtag.name));
+  const getHashtagsData = () => {
+    const allHashtags = balkanUsers
+      .map((post) => post.hashtags.map((hashtag) => hashtag.name));
 
-  // console.log(JSON.stringify(allHashtags, null, 2));
+    const hashtagsArray = [];
+    const hashtagsCount = {};
 
-  const hashtagsArray = [];
+    allHashtags.forEach((hashtag) => {
+      hashtagsArray.push(...hashtag);
+    });
 
-  allHashtags.forEach((hashtag) => {
-    hashtagsArray.push(...hashtag);
-  });
+    hashtagsArray.forEach((hashtag) => {
+      hashtagsCount[hashtag] = hashtagsCount[hashtag] ? hashtagsCount[hashtag] + 1 : 1;
+    });
 
-  const hashtagsSet = [...new Set(hashtagsArray)];
+    // TODO: Bug with hashtag #2020?
+    return Object.fromEntries(
+      Object.entries(hashtagsCount)
+        .sort(([, a], [, b]) => b - a)
+    );
+  };
+
+  const sortedHashtags = getHashtagsData();
+
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
+  };
+
+  const randomColors = Array.from(
+    { length: limit },
+    () => getRandomColor()
+  );
 
   const hashtagsData = {
-    labels: hashtagsSet.slice(0, limit),
+    labels: Object.keys(sortedHashtags).slice(0, limit),
     datasets: [{
-      data: [300, 50, 100],
+      data: Object.values(sortedHashtags).slice(0, limit),
+      backgroundColor: randomColors,
     }]
   };
 
