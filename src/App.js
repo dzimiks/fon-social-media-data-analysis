@@ -21,7 +21,7 @@ function App() {
             <div className="col-md-4 mb-3" key={post.id}>
               <div className="card card-shadow">
                 <div className="card-body">
-                  <div className="d-flex mb-3">
+                  <div className="d-flex align-items-center mb-3">
                     <img
                       src={post.authorMeta.avatar}
                       className="img-fluid rounded-circle card-image"
