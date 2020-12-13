@@ -80,6 +80,16 @@ function App() {
                     controls
                   />
                 </div>
+
+                <div className="card-footer text-muted">
+                  {post.hashtags.length ? post.hashtags.map((hashtag) => (
+                    <span className="badge badge-primary mr-1">
+                      #{hashtag.name}
+                    </span>
+                  )) : (
+                    <p className="m-0">No hashtags</p>
+                  )}
+                </div>
               </div>
             </div>
           ))}
