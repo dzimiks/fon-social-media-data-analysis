@@ -34,4 +34,10 @@ Inside the directory **scripts** create a file `scraper.js`. You can run it with
 
 ## 5. Language Detection & Data Cleaning
 
+- Remove unnecessary fields form object and export it to a new file.
+- We are using [franc](https://www.npmjs.com/package/franc) to detect the language of text.
+- Find Balkan TikTokers by searching keywords inside the text or signature.
+
+## 6. Data Preview & UI
+
 TODO
