@@ -14,9 +14,14 @@ import {
 
 function App() {
   const [sortValue, setSortValue] = useState('playCount');
+  const [limit, setLimit] = useState(5);
 
   const handleSort = (event) => {
     setSortValue(event.target.value);
+  };
+
+  const handleLimit = (event) => {
+    setLimit(event.target.value);
   };
 
   const customSortCompare = (a, b, value) => {
@@ -42,26 +47,42 @@ function App() {
 
         <div className="row">
           <div className="col-12 mb-3">
-            <h3>Filters</h3>
+            <h3>Filters - Showing {limit} posts</h3>
 
-            <label htmlFor="sortFilter">Sort By:</label>
+            <div className="d-flex align-items-center">
+              <label htmlFor="sortFilter" className="mr-2">Sort By:</label>
 
-            <select
-              className="form-control w-25"
-              id="sortFilter"
-              onChange={handleSort}
-            >
-              <option value="playCount">Views</option>
-              <option value="diggCount">Likes</option>
-              <option value="commentCount">Comments</option>
-              <option value="shareCount">Shares</option>
-            </select>
+              <select
+                className="form-control w-25 mr-3"
+                id="sortFilter"
+                onChange={handleSort}
+              >
+                <option value="playCount">Views</option>
+                <option value="diggCount">Likes</option>
+                <option value="commentCount">Comments</option>
+                <option value="shareCount">Shares</option>
+              </select>
+
+              <label htmlFor="limitFilter" className="mr-2">Limit By:</label>
+
+              <select
+                className="form-control w-25 mr-3"
+                id="limitFilter"
+                onChange={handleLimit}
+              >
+                <option value="5">Top 5</option>
+                <option value="10">Top 10</option>
+                <option value="20">Top 20</option>
+                <option value={balkanUsers.length}>All</option>
+              </select>
+            </div>
           </div>
         </div>
 
         <div className="row">
           {balkanUsers
             .sort((a, b) => customSortCompare(a, b, sortValue))
+            .slice(0, limit)
             .map((post) => (
               <div className="col-md-6 mb-3" key={post.id}>
                 <div className="card card-shadow">
